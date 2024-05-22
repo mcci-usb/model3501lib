@@ -176,9 +176,8 @@ All necessary things are installed during the normal installation process.
 - currently works and tested only for Windows.
 
 ## Demo
-```python
-![Demo Video](assets/MCCI-Super-MUTT-Model-3501.gif)
-```
+
+![Demo Video](assets/mcci-model.gif)
 
 ## Release History
 - Initial release
