@@ -29,7 +29,8 @@ This is a Python library to s the MCCI USB Switches (switch 3201,2301, 3141, 314
 - [Requiremets](#requirements)
 - [package usage](#package-usage)
 - [Installing package via pip cmd](#installing-package-via-pip-cmd)
-- [Maintainer](#maintainer)
+- [Development](#development)
+- [Demo](#demo)
 
 - [Release History](#release-history)
 
@@ -169,14 +170,14 @@ get_power_role_status()
 pip install model3501api
 ```
 
-## Maintainer
+## Development
 - It is a fully independent package.
 All necessary things are installed during the normal installation process.
 - currently works and tested only for Windows.
 
-## Maintainer
+## Demo
 ```python
-vinay N <vinayn@mcci.com>
+![Demo Video](assets/MCCI-Super-MUTT-Model-3501.gif)
 ```
 
 ## Release History
