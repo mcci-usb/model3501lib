@@ -10,7 +10,6 @@ MCCI Model 3501 SuperMUTT Python based library for control and operation
 
 This is a Python library to s the MCCI USB Switches (switch 3201,2301, 3141, 3142, 2101) and supports to Cricket UI.
 
-
 <!--
   This TOC uses the VS Code markdown TOC extension AlanWalk.markdown-toc.
   We strongly recommend updating using VS Code, the markdown-toc extension and the
@@ -83,31 +82,25 @@ Example: `model3501api-1.0.0-py3.7.egg`
 Create a Python file named `Simpletest.py` and open in text editor and import the `model3501lib` modules.
 
 ```python
-
-from model3501lib import DeviceController, set_speed
-from model3501lib import getrdoController, get_rdo_status
-from model3501lib import getpowerRoleController, get_power_role_status
-from model3501lib import ChargeController, set_charge
-from model3501lib import CDstressONController, onset_cdstress
-from model3501lib import CDstressOFFController, offset_cdstress
-from model3501lib import PDCaptiveCablesController
-from model3501lib import PDChargerPortController, pd_charger_port_status
-from model3501lib import FindDeviceController, find_device_status
-from model3501lib import ReconnectController, reconnect_status
-```
-
-```python
 #import the time for using delay between each commnds
 import time
 ```
-
 ### Sending a cmd for find device details
 ```python
+# To show list of the Model3501 devices.
+# import FindDeviceController
+from model3501lib import FindDeviceController, find_device_status
+
+# Command
 find_device_status()
 ```
 ### Sending a cmd for Set Speed
 ```python
 #Set to speed: s is super speed , h is high speed, l is low speed
+# import DeviceController
+from model3501lib import DeviceController, set_speed
+
+# Command
 set_speed('s')
 set_speed('h')
 set_speed('l')
@@ -119,17 +112,31 @@ set_speed('l')
  #27W (9V 3.0A)
  #45W (15V 3.0A)
  #set_charge(w)
- set_charge(15)
+
+ # import ChargeController
+ from model3501lib import ChargeController, set_charge
+
+ # Command
+ set_charge(15) #15 is Example
 ```
 ### Sending a cmd for CDStressOn
 ```python
 #Enable connect disconnect stress
+# import CDstressONController
+from model3501lib import CDstressONController, onset_cdstress
+
+# Command
 onset_cdstress()
 ```
 
 ### Sending a cmd for CDStressOff
 ```python
 # Disable connect disconnect stress
+
+# import CDstressOFFController
+from model3501lib import CDstressOFFController, offset_cdstress
+
+# Command
 offset_cdstress()
 ```
 
@@ -138,6 +145,11 @@ offset_cdstress()
 # Disconnect and reconnect the Type-C MUTT one time with
 #optional wait times (in ms), X before disconnect,and Y beforereconnect.
 # Test reconnect functionality with specified delays
+
+# import ReconnectController
+from model3501lib import ReconnectController, reconnect_status
+
+# Command
 delay_disconnect_ms = 5000  # 1 second
 delay_reconnect_ms = 10000  # 1 second
 reconnect_status(delay_disconnect_ms, delay_reconnect_ms)
@@ -145,24 +157,43 @@ reconnect_status(delay_disconnect_ms, delay_reconnect_ms)
 
 ### Sending a cmd for PdChargerPort
 ```python
-# Switch PD to charger receptacle
+# Switch PD to charger receptacle.
+
+# import PDChargerPortController
+from model3501lib import PDChargerPortController, pd_charger_port_status
+
+# Command
 pd_charger_port_status()
 ```
 
 ### Sending a cmd for PdCaptiveCable
 ```python
 #  Switch PD to captive cable
+
+# import PDCaptiveCablesController
+from model3501lib import PDCaptiveCablesController
+
+# Command
 pd_captive_cables_status()
 ```
 ### Sending a cmd for GetRdo
 ```python
-#  Read the RDO for the current power contract
+#  Read the RDO for the current power contract.
+
+# import getrdoController
+from model3501lib import getrdoController, get_rdo_status
+
+# Command
 get_rdo_status()
 ```
-
 ### Sending a cmd for GetPowerRole
 ```python
-#  Read the current power role
+#  Read the current power role.
+
+# import getpowerRoleController
+from model3501lib import getpowerRoleController, get_power_role_status
+
+# Command
 get_power_role_status()
 ```
 ## Installing package via pip cmd
