@@ -1,27 +1,91 @@
 ##############################################################################
-# 
+#
 # Module: pdcharger_port.py
 #
 # Description:
-#     Switch PD to charger receptacle.
+#     Switch USB Power Delivery (PD) operation to Charger
+#     Receptacle mode on the connected Type-C MUTT device
+#     using vendor-specific USB control transfer commands.
 #
 # Author:
-#     Vinay N, MCCI Corporation May 2024
+#     Vinay N, MCCI Corporation Feb 2026
 #
-#############################################################################
+#     V2.0.0 Mon Feb 16 2026 17:00:00   Vinay N
+#         Module created
+#
+##############################################################################
+# Built-in imports
+# (None)
+
+# Lib imports
 import usb.core
 
+# Own modules
+# (None)
+
 class PDChargerPortController:
+    """
+    Controller class to switch PD mode to Charger Receptacle.
+
+    This class detects the MUTT device and sends a USB
+    vendor-specific control transfer command to route
+    Power Delivery through the charger receptacle path.
+
+    Attributes:
+        vendor_id (int): USB Vendor ID of DUT device.
+        product_id (int): USB Product ID of DUT device.
+        device (usb.core.Device): Detected USB device instance.
+    """
     def __init__(self, vendor_id, product_id):
+        """
+        Initialize PD Charger Port Controller.
+
+        Args:
+            vendor_id (int): USB Vendor ID.
+            product_id (int): USB Product ID.
+
+        Returns:
+            None
+
+        Raises:
+            None
+        """
         self.vendor_id = vendor_id
         self.product_id = product_id
         self.device = None
     
     def find_device(self):
+        """
+        Locate the USB device.
+
+        Args:
+            None
+
+        Returns:
+            bool: True if device found, False otherwise.
+
+        Raises:
+            None
+        """
         self.device = usb.core.find(idVendor=self.vendor_id, idProduct=self.product_id)
         return self.device is not None
     
     def pd_charger_port(self):
+        """
+        Switch PD routing to Charger Receptacle mode.
+
+        Sends vendor-specific USB control transfer command
+        to configure PD communication via charger receptacle.
+
+        Args:
+            None
+
+        Returns:
+            bool: True if command successful, False otherwise.
+
+        Raises:
+            usb.core.USBError: If USB communication fails.
+        """
         if self.device is None:
             print("Device not found")
             return False
@@ -43,6 +107,21 @@ class PDChargerPortController:
         return result == 0
 
 def pd_charger_port_status():
+    """
+    Entry function to enable Charger Receptacle PD mode.
+
+    Initializes controller and triggers PD routing
+    configuration workflow.
+
+    Args:
+        None
+
+        Returns:
+            None
+
+        Raises:
+            None
+    """
     VENDOR_ID = 0x045e  # Replace with your vendor ID
     PRODUCT_ID = 0x078f  # Replace with your product ID
 

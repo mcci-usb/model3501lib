@@ -6,7 +6,7 @@
 #     setup to install the cricklib package
 #
 # Author:
-#     MCCI , MCCI   May 2024
+#     Vinay N , MCCI   Feb 2026
 #
 ##############################################################################
 
@@ -19,7 +19,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name='model3501api',
-    version='v1.0.6',
+    version='v2.0.0',
     description='API for MCCI Type C Super MUTT Model 3501.',
     long_description=long_description,
     long_description_content_type='text/markdown',

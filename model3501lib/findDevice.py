@@ -1,25 +1,80 @@
 ##############################################################################
-# 
+#
 # Module: findDevice.py
 #
 # Description:
-#      List Type-C MUTTs by index
+#     Detect and list connected Type-C MUTT devices by
+#     Vendor ID and Product ID. Retrieves device details
+#     such as manufacturer, product name, firmware version,
+#     and USB speed.
+#
 #
 # Author:
-#     Vinay N, MCCI Corporation May 2024
+#     Vinay N, MCCI Corporation Feb 2026
 #
-#############################################################################
+#     V2.0.0 Mon Feb 16 2026 17:00:00   Vinay N
+#         Module created
+#
+##############################################################################
 
+# Built-in imports
+# (None)
+
+# Lib imports
 import usb.core
 import usb.util
 
+# Own modules
+# (None)
+
 class FindDeviceController:
+    """
+    Controller class to detect MUTT USB devices.
+
+    This class scans all connected USB devices and filters
+    them based on Vendor ID and Product ID. It retrieves
+    device descriptor information and USB speed details.
+
+    Attributes:
+        vendor_id (int): Target USB Vendor ID.
+        product_id (int): Target USB Product ID.
+        device (usb.core.Device): USB device instance.
+    """
     def __init__(self, vendor_id, product_id):
+        """
+        Initialize Find Device Controller.
+
+        Args:
+            vendor_id (int): USB Vendor ID.
+            product_id (int): USB Product ID.
+
+        Returns:
+            None
+
+        Raises:
+            None
+        """
         self.vendor_id = vendor_id
         self.product_id = product_id
         self.device = None
     
     def find_device(self):
+        """
+        Scan and list matching USB devices.
+
+        This function searches all connected USB devices,
+        filters by VID/PID, retrieves descriptor details,
+        and determines USB speed.
+
+        Args:
+            None
+
+        Returns:
+            list: List of dictionaries containing device details.
+
+        Raises:
+            usb.core.USBError: If descriptor retrieval fails.
+        """
         devices_info = []
 
         # Find all USB devices connected to the system
@@ -66,6 +121,21 @@ class FindDeviceController:
         return devices_info
 
 def find_device_status():
+    """
+    Entry function to list MUTT device status.
+
+    Detects all matching devices and prints their
+    descriptor and speed information.
+
+    Args:
+        None
+
+    Returns:
+        None
+
+    Raises:
+        None
+    """
     VENDOR_ID = 0x045e
     PRODUCT_ID = 0x078f
     controller = FindDeviceController(VENDOR_ID, PRODUCT_ID)
